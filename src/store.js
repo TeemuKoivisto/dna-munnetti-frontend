@@ -1,5 +1,10 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, combineReducers,
+  applyMiddleware, compose } from "redux";
 
-const store = createStore();
+import reducers from "./state";
+
+const combinedReducers = combineReducers(reducers);
+
+const store = createStore(combinedReducers);
 
 export default store;
