@@ -14,3 +14,7 @@ const Root = (
 );
 
 ReactDOM.render(Root, container);
+
+if (module.hot) {
+  module.hot.accept();
+}
