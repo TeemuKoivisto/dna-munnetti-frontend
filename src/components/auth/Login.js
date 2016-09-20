@@ -13,11 +13,14 @@ export class Login extends React.Component {
   }
 
   handleChange(name, event) {
+    this.state.loginUser[name] = event.target.value;
+    this.setState({});
     // Validate.updateForm("loginUser", name, event.target.value);
   }
 
   handleClick(event) {
     event.preventDefault();
+    this.props.loginUser(this.state.loginUser.email, this.state.loginUser.password);
     // if (Validate.isFormValid("loginUser")) {
     //   this.props.loginUser(this.state.loginUser.values);
     // }
@@ -80,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, null)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,1 +1,2 @@
-API_URL=localhost:8088
+NODE_ENV=development
+API_URL=http://localhost:3332
