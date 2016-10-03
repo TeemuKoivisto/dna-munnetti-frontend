@@ -7,15 +7,16 @@ import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
 import logger from "./middleware/logger";
+import { handleRequest } from "./middleware/apiMiddleware";
 
 import reducers from "./state";
 
 const combinedReducers = combineReducers(reducers);
 
 const rootReducer = (state, action) => {
-  // if (action.type === LOGOUT_USER) {
-  //   return combinedReducers(undefined, action);
-  // }
+  if (action.type === "LOGOUT_USER") {
+    return combinedReducers(undefined, action);
+  }
   return combinedReducers(state, action);
 };
 
@@ -24,7 +25,7 @@ const client = axios.create({ //all axios can be used, shown in axios documentat
   responseType: 'json'
 });
 
-const createStoreWithMiddleware = applyMiddleware(thunk, axiosMiddleware(client), logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, handleRequest, logger)(createStore);
 const createPersistentStore = compose(
   persistState(["auth"])
 )(createStoreWithMiddleware);

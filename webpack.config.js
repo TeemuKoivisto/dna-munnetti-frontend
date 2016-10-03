@@ -44,7 +44,7 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
   ],
   resolve: {
-    modulesDirectories: ["node_modules"],
+    modulesDirectories: ["node_modules", "src"],
     extensions: ["", ".js"],
   },
 }

@@ -1,20 +1,20 @@
+import { browserHistory } from "react-router";
+
 export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
 
-// export const loginUser = (email, password) => (
-//
-//   // Invert control!
-//   // Return a function that accepts `dispatch` so we can dispatch later.
-//   // Thunk middleware knows how to turn thunk async actions into actions.
-//
-//   function (dispatch) {
-//     return fetchSecretSauce().then(
-//       sauce => dispatch(makeASandwich(forPerson, sauce)),
-//       error => dispatch(apologize('The Sandwich Shop', forPerson, error))
-//     );
-//   };
-// }
+export const loginUser = (email, password) => {
+  return (dispatch, getState) => {
+    return dispatch(loginAction(email, password)).then((action) => {
+      if (action.type === "LOGIN_USER_SUCCESS") {
+        browserHistory.push("/");
+      }
+      return action;
+    })
+  };
+}
 
-export const loginUser = (email, password) => (
+const loginAction = (email, password) => (
   {
     type: LOGIN_USER,
     payload: {
@@ -29,3 +29,9 @@ export const loginUser = (email, password) => (
     }
   }
 );
+
+export const logout = () => (
+  {
+    type: LOGOUT_USER,
+  }
+)

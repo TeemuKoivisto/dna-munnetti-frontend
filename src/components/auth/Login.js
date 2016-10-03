@@ -20,13 +20,17 @@ export class Login extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.props.loginUser(this.state.loginUser.email, this.state.loginUser.password);
+    this.props.loginUser(this.state.loginUser.email, this.state.loginUser.password)
+      // .then((thing) => {
+      //   console.log(thing);
+      // })
     // if (Validate.isFormValid("loginUser")) {
     //   this.props.loginUser(this.state.loginUser.values);
     // }
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <div className="ui middle aligned center aligned grid">
         <div className="ui">
@@ -57,9 +61,13 @@ export class Login extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="ui fluid large blue submit button" onClick={this.handleClick.bind(this)}>
-              Login
-            </div>
+            { loading ?
+              <div className="ui blue active centered inline loader"></div>
+                :
+              <div className="ui fluid large blue submit button" onClick={this.handleClick.bind(this)}>
+                Login
+              </div>
+            }
           </div>
         </div>
       </div>
@@ -69,11 +77,12 @@ export class Login extends React.Component {
 
 import { connect } from "react-redux";
 
-import { loginUser } from "../../state/auth/auth.actions";
+import { loginUser } from "state/auth/auth.actions";
 
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
+    loading: state.auth.loading,
   };
 };
 

@@ -15,6 +15,8 @@ const Root = (
 
 ReactDOM.render(Root, container);
 
+// updates everything defined in this file when changes are made
+// in the other end webpack-hot-middleware triggers browser-window to update
 if (module.hot) {
   module.hot.accept();
 }
