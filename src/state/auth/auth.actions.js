@@ -7,7 +7,7 @@ export const loginUser = (email, password) => {
   return (dispatch, getState) => {
     return dispatch(loginAction(email, password)).then((action) => {
       if (action.type === "LOGIN_USER_SUCCESS") {
-        browserHistory.push("/");
+        browserHistory.push("/user/me");
       }
       return action;
     })

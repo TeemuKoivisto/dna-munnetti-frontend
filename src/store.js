@@ -5,13 +5,14 @@ import persistState from "redux-localstorage";
 import thunk from "redux-thunk";
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
+import { reducer as formReducer } from 'redux-form'
 
 import logger from "./middleware/logger";
 import { handleRequest } from "./middleware/apiMiddleware";
 
 import reducers from "./state";
 
-const combinedReducers = combineReducers(reducers);
+const combinedReducers = combineReducers(Object.assign({}, reducers, {form: formReducer }));
 
 const rootReducer = (state, action) => {
   if (action.type === "LOGOUT_USER") {
