@@ -16,15 +16,11 @@ export default function connect(formOptions = {}) {
     return class CreateForm extends Component {
       constructor() {
         super();
-        this.clearCache();
-        Validate.createForm("loginForm", "loginUser");
-        this.mergeProps(Validate.getForm("loginForm"));
-      }
-
-      clearCache() {
-        this.mergedProps = {};
-        this.haveOwnPropsChanged = true
-        this.renderedElement = null
+        this.mergedProps2 = {
+          form: Validate.createForm("loginForm", "loginUser"),
+          isFormValid: () => Validate.isFormValid("loginForm"),
+          updateForm: (field, value) => Validate.updateForm("loginForm", field, value)
+        }
       }
 
       // updateMergedPropsIfNeeded() {
@@ -37,16 +33,16 @@ export default function connect(formOptions = {}) {
       //   return true
       // }
 
-      mergeProps(newProps) {
-        const nextMergedProps = Object.assign({}, this.props || {}, { form: newProps });
-        this.mergedProps = nextMergedProps;
-      }
+      // mergeProps(newProps) {
+      //   const nextMergedProps = Object.assign({}, this.props || {}, { form: newProps });
+      //   this.mergedProps2 = nextMergedProps;
+      // }
 
       componentWillMount() {
         const self = this;
         Validate.subscribeToForm("loginForm", "xx", (loginForm) => {
           console.log("setting state")
-          self.mergeProps(loginForm);
+          self.mergedProps2 = Object.assign({}, this.mergedProps2, { form: loginForm});
           self.setState({});
         });
       }
@@ -57,7 +53,8 @@ export default function connect(formOptions = {}) {
 
       render() {
         return createElement(WrappedComponent, {
-          ...this.mergedProps,
+          ...this.props,
+          ...this.mergedProps2,
         })
       }
     }

@@ -3,20 +3,23 @@ import { browserHistory } from "react-router";
 import Validate from "../../react-redux-validate/Validate";
 
 export class Login extends React.Component {
-
+  // constructor() {
+  //   super();
+  //   Validate.createForm("loginForm", "loginUser");
+  // }
   handleChange(name, event) {
     event.preventDefault();
-    // console.log(this.props)
     // console.log(Validate.getForm("loginForm"))
     // console.log(Validate.getFormField("loginForm", "email"))
-    Validate.updateForm("loginForm", name, event.target.value);
-    console.log("dem props", this.props)
-    // this.setState({});
+    this.props.updateForm(name, event.target.value);
+    // console.log("dem props", this.props)
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    if (Validate.isFormValid("loginForm")) {
+    // if (Validate.isFormValid("loginForm")) {
+    if (this.props.isFormValid()) {
+      // const { email, password } = Validate.getFormValues("loginForm");
       const { email, password } = this.props.form.values;
       this.props.loginUser(email, password);
     }
@@ -24,8 +27,9 @@ export class Login extends React.Component {
 
   render() {
     const { loading } = this.props;
+    // console.log(this)
     console.log("rendering, props: ", this.props)
-    const loginForm = this.props.form.values;
+    const { email, password } = this.props.form.values;
     return (
       <form className="ui middle aligned center aligned grid" onSubmit={this.handleSubmit.bind(this)}>
         <div className="ui">
@@ -38,7 +42,7 @@ export class Login extends React.Component {
                     type="text"
                     name="email"
                     placeholder="E-mail address"
-                    value={loginForm.email}
+                    value={email}
                     onChange={this.handleChange.bind(this, "email")}
                   />
                 </div>
@@ -50,7 +54,7 @@ export class Login extends React.Component {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    value={loginForm.password}
+                    value={password}
                     onChange={this.handleChange.bind(this, "password")}
                   />
                 </div>
@@ -89,9 +93,14 @@ const mapDispatchToProps = (dispatch) => ({
 
 import createForm from "../../react-redux-validate/CreateForm";
 
-const LoginWithForm = createForm({
+// const LoginWithForm = createForm({
+//   form: "loginForm",
+//   model: "loginUser",
+// })(Login)
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginWithForm)
+
+export default createForm({
   form: "loginForm",
   model: "loginUser",
-})(Login)
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginWithForm)
+})(connect(mapStateToProps, mapDispatchToProps)(Login))
