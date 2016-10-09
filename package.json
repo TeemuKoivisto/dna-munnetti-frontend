@@ -1,7 +1,7 @@
 {
   "name": "simple-react-bootstrap",
   "version": "0.0.1",
-  "description": "simple bootstrap for a React application",
+  "description": "simple bootstrap for React application",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",

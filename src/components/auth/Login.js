@@ -6,21 +6,26 @@ export class Login extends React.Component {
 
   handleChange(name, event) {
     event.preventDefault();
-    console.log(Validate.getForm("loginForm"))
+    // console.log(this.props)
+    // console.log(Validate.getForm("loginForm"))
+    // console.log(Validate.getFormField("loginForm", "email"))
     Validate.updateForm("loginForm", name, event.target.value);
+    console.log("dem props", this.props)
+    // this.setState({});
   }
 
   handleSubmit(event) {
     event.preventDefault();
     if (Validate.isFormValid("loginForm")) {
-      console.log("lol")
-      const values = Validate.getFormValues("loginForm");
-      this.props.loginUser(values.email, values.password);
+      const { email, password } = this.props.form.values;
+      this.props.loginUser(email, password);
     }
   }
 
   render() {
     const { loading } = this.props;
+    console.log("rendering, props: ", this.props)
+    const loginForm = this.props.form.values;
     return (
       <form className="ui middle aligned center aligned grid" onSubmit={this.handleSubmit.bind(this)}>
         <div className="ui">
@@ -33,6 +38,7 @@ export class Login extends React.Component {
                     type="text"
                     name="email"
                     placeholder="E-mail address"
+                    value={loginForm.email}
                     onChange={this.handleChange.bind(this, "email")}
                   />
                 </div>
@@ -44,6 +50,7 @@ export class Login extends React.Component {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    value={loginForm.password}
                     onChange={this.handleChange.bind(this, "password")}
                   />
                 </div>
@@ -52,7 +59,7 @@ export class Login extends React.Component {
             { loading ?
               <div className="ui blue active centered inline loader"></div>
                 :
-              <button type="submit">Log In</button>
+              <button className="ui fluid large blue submit button" type="submit">Log In</button>
             }
           </div>
         </div>
@@ -82,7 +89,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 import createForm from "../../react-redux-validate/CreateForm";
 
-export default createForm({
+const LoginWithForm = createForm({
   form: "loginForm",
   model: "loginUser",
-})(connect(mapStateToProps, mapDispatchToProps)(Login))
+})(Login)
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginWithForm)

@@ -33,6 +33,7 @@ export default function (state = INITIAL_STATE, action) {
         errors: {}
       }));
     case UPDATE_FORM:
+      console.log("updating yo ", action)
       // state.forms[action.payload.formname].values[action.payload.field] = action.payload.value;
       // state.forms[action.payload.formname].errors = action.payload.errors;
       let updatedValue = state;
