@@ -20,17 +20,17 @@ module.exports = {
       {
         test: /\.(css|scss)$/,
         loaders: [
-          'style',
-          'css',
-          'sass',
-          // 'postcss'
+          "style",
+          "css",
+          "sass",
+          // "postcss"
         ]
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         include: path.join(__dirname, "src"),
-        loader: 'babel'
+        loader: "babel"
       },
     ],
   },

@@ -9,7 +9,7 @@ export default class App extends React.Component {
     return (
       <div>
         <NavBar />
-        <main className="main-container m-top">
+        <main className="main-container">
           {this.props.children}
         </main>
       </div>
