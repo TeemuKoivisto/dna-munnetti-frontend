@@ -9,6 +9,7 @@ export const createRequest = (action, store) => {
 
   const token = store.getState().auth.token;
   const request = action.payload.request;
+
   return axios({
     method: request.method,
     url: process.env.API_URL + request.url,

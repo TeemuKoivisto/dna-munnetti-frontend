@@ -1,6 +1,6 @@
 import React from "react";
 import { browserHistory } from "react-router";
-import Validate from "../../react-redux-validate/Validate";
+import Validate from "../../react-form-validate/Validate";
 
 export class Login extends React.Component {
   // constructor() {
@@ -27,7 +27,6 @@ export class Login extends React.Component {
 
   render() {
     const { loading } = this.props;
-    // console.log(this)
     console.log("rendering, props: ", this.props)
     const { email, password } = this.props.form.values;
     return (
@@ -91,7 +90,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
-import createForm from "../../react-redux-validate/CreateForm";
+import createForm from "../../react-form-validate/CreateForm";
 
 // const LoginWithForm = createForm({
 //   form: "loginForm",

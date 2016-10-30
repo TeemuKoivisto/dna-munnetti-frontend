@@ -5,11 +5,12 @@ import { redirectNonUser, redirectNonAdmin } from "./middleware/restrictAccess";
 
 import App from "./components/app/App";
 import FrontPage from "./components/app/FrontPage";
+import NotFound from "./components/app/NotFound";
+
 import UserShow from "./components/user/UserShow";
 // import UserList from "./user/UserList";
 import Login from "./components/auth/Login";
 // import Registration from "./auth/Registration";
-import NotFound from "./components/app/NotFound";
 
 export default (
   <Route>
