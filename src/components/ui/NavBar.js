@@ -1,4 +1,4 @@
-import "./nav.scss";
+// import "./nav.scss";
 
 import React from "react";
 import { browserHistory, Link } from "react-router";
@@ -36,6 +36,10 @@ export class NavBar extends React.Component {
 
               <li>
                 <Link to="/user/me">Me</Link>
+              </li>
+
+              <li>
+                <Link to="/map">Map</Link>
               </li>
             </ul>
 

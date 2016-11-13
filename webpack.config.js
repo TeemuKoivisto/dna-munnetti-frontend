@@ -19,15 +19,15 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.(css|scss)$/,
-        loaders: [
-          "style",
-          "css",
-          "sass",
-          // "postcss"
-        ]
-      },
+      // {
+      //   test: /\.(css|scss)$/,
+      //   loaders: [
+      //     "style",
+      //     "css",
+      //     "sass",
+      //     // "postcss"
+      //   ]
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,

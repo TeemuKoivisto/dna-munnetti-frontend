@@ -12,6 +12,8 @@ import UserShow from "./components/user/UserShow";
 import Login from "./components/auth/Login";
 // import Registration from "./auth/Registration";
 
+import Map from "components/map/Map";
+
 export default (
   <Route>
     <Route path="" component={App}>
@@ -20,6 +22,7 @@ export default (
       {/*<Route path="user" component={UserList} onEnter={redirectNonAdmin} />*/}
       <Route path="/login" component={Login} />
       {/*<Route path="register" component={Registration} />*/}
+      <Route path="/map" component={Map} />
       <Route path="*" component={NotFound}/>
     </Route>
   </Route>
