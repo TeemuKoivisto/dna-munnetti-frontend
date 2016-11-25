@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+var speedTest = require('speedtest-net');
 
 export default class MapThing extends React.Component {
 
@@ -9,6 +10,17 @@ export default class MapThing extends React.Component {
     this.state = {
       showModal: true
     };
+  }
+
+  componentWillMount() {
+    var test = speedTest({maxTime: 5000});
+    test.on('data', function(data) {
+      console.dir(data);
+    });
+
+    test.on('error', function(err) {
+      console.error(err);
+    });
   }
 
   handleClick(type, event) {

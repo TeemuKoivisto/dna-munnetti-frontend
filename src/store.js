@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import logger from "./middleware/logger";
 import { handleRequest } from "./middleware/apiMiddleware";
 
-import reducers from "./state";
+import reducers from "reducers";
 
 const combinedReducers = combineReducers(reducers);
 

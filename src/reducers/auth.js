@@ -1,6 +1,6 @@
 import {
   LOGIN_USER,
-} from "./auth.actions";
+} from "actions/auth";
 
 const INITIAL_STATE = {
   user: {},
