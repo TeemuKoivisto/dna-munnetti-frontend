@@ -36,3 +36,31 @@
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
+
+#mapgl {
+  height: 600px;
+  width: 800px;
+}
+
+svg {
+  float: left;
+  border: 1px solid black;
+  shape-rendering: auto;
+}
+
+g {
+  stroke-width: 0.5px;
+}
+
+path {
+  stroke: #555;
+  fill: #ccf;
+}
+
+path:hover {
+  fill: #faa;
+     }
+
+path.active {
+  fill: red;
+}
