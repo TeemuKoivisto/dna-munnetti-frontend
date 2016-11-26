@@ -10,13 +10,13 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 0;
+  top: 50px;
   bottom: 0;
   min-height: 400px;
   width: 100%;
 }
 
-.grappa-modal {
+.dna-modal {
   display: none;
   position: fixed; /* Stay in place */
   z-index: 20; /* Sit on top */
@@ -29,7 +29,7 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.grappa-modal-content {
+.dna-modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
